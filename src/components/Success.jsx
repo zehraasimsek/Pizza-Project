@@ -1,23 +1,24 @@
 import LogoSVG from "../../images/iteration-1-images/logo.svg";
-import { useHistory } from "react-router-dom"; // useHistory'yi import et
+import { useHistory } from "react-router-dom"; 
 import React from "react";
 
-export default function Success({ orderData }) {
-  const history = useHistory(); // useHistory kullanımı
+export default function Success({orderData}) {
+  const history = useHistory();
 
   const handleButton = () => {
     history.push("/"); // Yönlendirme işlemi
   };
 
-  // orderData'nın olmaması durumu kontrolü
+  // orderData'nın eksik olup olmadığını kontrol et
   if (!orderData) {
     return <p>Sipariş verileri eksik veya hatalı.</p>;
   }
 
   const { isimSoyisim, boyut, hamur, malzemeler, siparisNotu, miktar } = orderData;
 
-  // Ek malzemelerin toplam maliyeti
-  const extra = malzemeler.length * 5; // Malzeme başına 5 TL
+  // malzemeler dizisinin varlığını kontrol et
+  const extra = (malzemeler && malzemeler.length) ? malzemeler.length * 5 : 0; // Eğer malzemeler varsa, uzunluğunu al, yoksa 0
+
   // Toplam maliyetin hesaplanması
   const total = 85.5 * miktar + extra * miktar;
 
@@ -47,7 +48,7 @@ export default function Success({ orderData }) {
               <p>Hamur:</p> <p>{hamur}</p>
             </div>
             <div>
-              <p>Ek Malzemeler:</p> <p>{malzemeler.join(", ")}</p>
+              <p>Ek Malzemeler:</p> <p>{malzemeler ? malzemeler.join(", ") : "Yok"}</p>
             </div>
             <div>
               <p>Sipariş Notu:</p> <p>{siparisNotu}</p>

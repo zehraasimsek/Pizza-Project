@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import LogoSVG from "../../images/iteration-1-images/logo.svg";
-import Footer from "./Footer";
 import {
   Form,
   FormGroup,
@@ -12,61 +10,62 @@ import {
   FormText,
   FormFeedback,
 } from "reactstrap";
+import LogoSVG from "../../images/iteration-1-images/logo.svg";
+import Footer from "./Footer";
 
-
-// kullanıcıdan alınan ilk veriler
-const initialUserData = {
+// kullanicidan alinacak veriler 
+const initialData = {
   isimSoyisim: "",
-  hamuru: "",
   boyut: "",
+  hamur: "",
   malzemeler: [],
   siparisNotu: "",
   miktar: "",
 };
 
-// malzemeler ayarlandı
-const malzemeler = [
-  "Pepperoni", "Sosis", "Kanada Jambonu", "Tavuk Izgara",
-  "Soğan", "Ananas", "Domates", "Kabak", "Mısır",
-  "Sucuk", "Jalepeno", "Sarımsak", "Biber"
-].map(malzeme => ({ name: malzeme, label: malzeme }));
-
-// hata mesajları ayarlandı
+// hata mesajlari duzenlendi
 const errorMessages = {
   boyut: "* Lütfen bir boyut seçin.",
   hamur: "* Lütfen hamur kalınlığı seçin.",
   malzemeler: "* En fazla 10 malzeme seçebilirsiniz!",
   isimSoyisim: "* İsim en az 3 karakter içermelidir.",
 };
-// satateler  tanımlandı
-export default function OrderPizza() {
+
+// malzemeler ayarlandı
+const malzemeler = [
+  "Pepperoni", "Sosis", "Kanada Jambonu", "Tavuk Izgara", "Soğan",
+  "Ananas", "Domates", "Kabak", "Mısır", "Sucuk", "Jalepeno",
+  "Sarımsak", "Biber"
+].map(malzeme => ({ name: malzeme, label: malzeme }));
+
+export default function OrderPizza({ onSubmit }) {
   const history = useHistory();
-  const [userData, setUserData] = useState(initialUserData);
-  const [errors, setErrors] = useState({});
+  const [form, setForm] = useState(initialData);
+  const [errors, setErrors] = useState(initialData);
   const [isValid, setIsValid] = useState(false);
   const [count, setCount] = useState(1);
-
-  // form doğrulama işlemi yapıldı
+ 
   useEffect(() => {
     validateForm();
-  }, [userData]);
+  }, [form]);
 
   const validateForm = () => {
     let newErrors = {};
 
-    newErrors.boyut = !userData.boyut ? errorMessages.boyut : "";
+    newErrors.boyut = !form.boyut ? errorMessages.boyut : "";
 
-    newErrors.hamur = !userData.hamur ? errorMessages.hamur : "";
+    newErrors.hamur = !form.hamur ? errorMessages.hamur : "";
 
     newErrors.malzemeler =
-      userData.malzemeler.length > 10 ? errorMessages.malzemeler : "";
+      form.malzemeler.length > 10 ? errorMessages.malzemeler : "";
 
     newErrors.isimSoyisim =
-      !userData.isimSoyisim || userData.isimSoyisim.length < 3
+      !form.isimSoyisim || form.isimSoyisim.length < 3
         ? errorMessages.isimSoyisim
         : "";
 
     setErrors(newErrors);
+
     const isValidForm = Object.values(newErrors).every((e) => e === "");
     setIsValid(isValidForm);
   };
@@ -76,11 +75,11 @@ export default function OrderPizza() {
 
     if (type === "checkbox") {
       const updatedMalzemeler = checked
-        ? [...userData.malzemeler, name]
-        : userData.malzemeler.filter((item) => item !== name);
-      setUserData({ ...userData, malzemeler: updatedMalzemeler });
+        ? [...form.malzemeler, name]
+        : form.malzemeler.filter((item) => item !== name);
+      setForm({ ...form, malzemeler: updatedMalzemeler });
     } else {
-      setUserData({ ...userData, [name]: value });
+      setForm({ ...form, [name]: value });
     }
   };
 
@@ -96,11 +95,12 @@ export default function OrderPizza() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedForm = { ...userData, miktar: count };
+    const updatedForm = { ...form, miktar: count };
 
     axios
       .post("https://reqres.in/api/pizza", updatedForm)
       .then((response) => {
+        onSubmit(response.data);
         if (isValid) {
           history.push("/siparis-alindi");
         } else {
@@ -115,16 +115,16 @@ export default function OrderPizza() {
   return (
     <>
       <header className="form-header">
-        <img src={LogoSVG} alt="Logo" />
+        <img src={LogoSVG} />
       </header>
 
-      <section className="bej">
-        <div className="bej-icerik">
-          <img src="./images/iteration-2-images/pictures/form-banner.png" alt="Pizza" />
+      <section className="bej-part">
+        <div className="bej-part-icerik">
+          <img src="./images/iteration-2-images/pictures/form-banner.png"/>
           <nav className="nav-menu">
-            <a href="/">Anasayfa</a>
-            <p> </p>
-            <a href="/siparis-olustur">Sipariş Oluştur</a>
+            <a href="/">Anasayfa  </a>
+            <p> - </p>
+            <a href="/siparis-olustur"> Sipariş Oluştur</a>
           </nav>
           <h2>Position Absolute Acı Pizza</h2>
           <div className="pizza-info">
@@ -186,7 +186,7 @@ export default function OrderPizza() {
               type="select"
               onChange={handleChange}
             >
-              <option value="">Hamur Kalınlığı Seç</option>
+              <option value=""> Hamur Kalınlığı Seç </option>
               <option value="İnce">İnce</option>
               <option value="Orta">Orta</option>
               <option value="Kalın">Kalın</option>
@@ -225,7 +225,7 @@ export default function OrderPizza() {
               name="isimSoyisim"
               placeholder="Lütfen isminizi girin."
               type="text"
-              value={userData.isimSoyisim}
+              value={form.isimSoyisim}
               onChange={handleChange}
               invalid={errors.isimSoyisim !== ""}
             />
@@ -241,7 +241,7 @@ export default function OrderPizza() {
               name="siparisNotu"
               placeholder="Siparişinize özel bir not ekleyin."
               type="text"
-              value={userData.siparisNotu}
+              value={form.siparisNotu}
               onChange={handleChange}
             />
           </FormGroup>
@@ -249,7 +249,7 @@ export default function OrderPizza() {
 
         <section>
           <Button onClick={handleDecrement}>-</Button>
-          <span style={{ textAlign: "center" }}>{count}</span>
+          <span style={{textAlign:"center"}}>{count}</span>
           <Button onClick={handleIncrement}>+</Button>
         </section>
 
@@ -261,4 +261,3 @@ export default function OrderPizza() {
     </>
   );
 }
-

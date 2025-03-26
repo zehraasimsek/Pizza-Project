@@ -9,12 +9,11 @@ import MainPage from "./components/MainPage";
 import React, { useState } from "react";
 
 function App() {
-  const [orderData, setOrderData] = useState("h");
+  const [orderData, setOrderData] = useState(null);
 
   const handleOrderData = (d) => {
     setOrderData(d);
   };
-
   return (
     <Router>
       <Switch>
@@ -29,7 +28,10 @@ function App() {
         </Route>
       </Switch>
     </Router>
+
   );
+ 
+
 }
 
 export default App;
