@@ -85,7 +85,7 @@ export default function Footer() {
           </ul>
         </div>
       </footer>
-      
+
       <footer className="secondary-footer">
         <p>© 2025 Teknolojik Yemekler.</p>
       </footer>
