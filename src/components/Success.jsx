@@ -28,7 +28,7 @@ export default function Success({orderData}) {
         <img src={LogoSVG} alt="Logo" />
         <section className="siparis-alindi">
           <h3 className="success-title">Lezzetin Yolda</h3>
-          <h1 className="main-title">
+          <h1 className="main-title" data-cy="success-message">
             TEBRİKLER! <br />
             SİPARİŞİNİZ ALINDI!
           </h1>
@@ -39,10 +39,10 @@ export default function Success({orderData}) {
           <h2>Position Absolute Acı Pizza</h2>
           <section className="siparis-form-info">
             <div>
-              <p>İsim Soyisim:</p> <p>{isimSoyisim}</p>
+              <p>İsim Soyisim:</p> <p data-cy="order-name">{isimSoyisim}</p>
             </div>
             <div>
-              <p>Boyut:</p> <p>{boyut}</p>
+              <p>Boyut:</p> <p >{boyut}</p>
             </div>
             <div>
               <p>Hamur:</p> <p>{hamur}</p>
@@ -51,14 +51,14 @@ export default function Success({orderData}) {
               <p>Ek Malzemeler:</p> <p>{malzemeler ? malzemeler.join(", ") : "Yok"}</p>
             </div>
             <div>
-              <p>Sipariş Notu:</p> <p>{siparisNotu}</p>
+              <p>Sipariş Notu:</p> <p data-cy="order-size">{siparisNotu}</p>
             </div>
           </section>
         </section>
         <section className="siparis-odeme-info">
           <h2>Sipariş Toplamı</h2>
           <div>
-            <p>Seçimler:</p> <p>{extra} ₺</p>
+            <p>Seçimler:</p> <p data-cy="order-extras">{extra} ₺</p>
           </div>
           <div>
             <p>Toplam:</p> <p>{total} ₺</p>

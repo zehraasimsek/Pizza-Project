@@ -26,7 +26,7 @@ describe("Home Page", () => {
   });
 });
 
-describe("Main Page", () => {
+describe("MainPage", () => {
   beforeEach(() => {
     cy.visit("http://localhost:5173/"); // Her testten önce ana sayfayı aç
   });
@@ -61,6 +61,34 @@ describe("Main Page", () => {
   });
 });
 
+describe("Order Pizza Page", () => {
+  beforeEach(() => {
+    cy.visit("http://localhost:5173/siparis-olustur"); // Sayfayı aç
+  });
+
+  it("Sayfa yükleniyor mu?", () => {
+    cy.contains("Position Absolute Acı Pizza").should("be.visible"); // Başlık kontrolü
+    cy.contains("Boyut Seç *").should("be.visible");
+    cy.contains("Hamur Seç *").should("be.visible");
+    cy.contains("Ek Malzemeler").should("be.visible");
+    cy.contains("Sipariş Ver").should("be.visible");
+  });
+
+  it("Boyut ve hamur seçilebiliyor mu?", () => {
+    cy.get("input[name='boyut'][value='M']").check().should("be.checked"); // Orta boyut seç
+    cy.get("#hamurKalinligi").select("İnce").should("have.value", "İnce"); // İnce hamur seç
+  });
+
+
+  it("Sipariş butonu yalnızca form geçerli olursa aktif olur", () => {
+    cy.get("button[type='submit']").should("be.disabled"); // Başlangıçta buton pasif
+    cy.get("#isimSoyisim").type("Test Kullanıcı");
+    cy.get("input[name='boyut'][value='L']").check();
+    cy.get("#hamurKalinligi").select("Orta");
+    cy.get("button[type='submit']").should("not.be.disabled"); // Buton aktif olmalı
+  });
+
+});
 
 
 
