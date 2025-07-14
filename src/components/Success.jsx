@@ -1,8 +1,8 @@
-import LogoSVG from "../../images/iteration-1-images/logo.svg";
-import { useHistory } from "react-router-dom"; 
+import LogoSVG from "/images/iteration-1-images/logo.svg";
+import { useHistory } from "react-router-dom";
 import React from "react";
 
-export default function Success({orderData}) {
+export default function Success({ orderData }) {
   const history = useHistory();
 
   const handleButton = () => {
@@ -14,10 +14,11 @@ export default function Success({orderData}) {
     return <p>Sipariş verileri eksik veya hatalı.</p>;
   }
 
-  const { isimSoyisim, boyut, hamur, malzemeler, siparisNotu, miktar } = orderData;
+  const { isimSoyisim, boyut, hamur, malzemeler, siparisNotu, miktar } =
+    orderData;
 
   // malzemeler dizisinin varlığını kontrol et
-  const extra = (malzemeler && malzemeler.length) ? malzemeler.length * 5 : 0; // Eğer malzemeler varsa, uzunluğunu al, yoksa 0
+  const extra = malzemeler && malzemeler.length ? malzemeler.length * 5 : 0; // Eğer malzemeler varsa, uzunluğunu al, yoksa 0
 
   // Toplam maliyetin hesaplanması
   const total = 85.5 * miktar + extra * miktar;
@@ -42,13 +43,14 @@ export default function Success({orderData}) {
               <p>İsim Soyisim:</p> <p data-cy="order-name">{isimSoyisim}</p>
             </div>
             <div>
-              <p>Boyut:</p> <p >{boyut}</p>
+              <p>Boyut:</p> <p>{boyut}</p>
             </div>
             <div>
               <p>Hamur:</p> <p>{hamur}</p>
             </div>
             <div>
-              <p>Ek Malzemeler:</p> <p>{malzemeler ? malzemeler.join(", ") : "Yok"}</p>
+              <p>Ek Malzemeler:</p>{" "}
+              <p>{malzemeler ? malzemeler.join(", ") : "Yok"}</p>
             </div>
             <div>
               <p>Sipariş Notu:</p> <p data-cy="order-size">{siparisNotu}</p>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import LogoSVG from "../../images/iteration-1-images/logo.svg";
+import LogoSVG from "/images/iteration-1-images/logo.svg";
 import { Button } from "reactstrap";
 
 export default function MainPage() {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import LogoSVG from "../../images/iteration-1-images/logo.svg";
-import LogoFooterSVG from "../../images/iteration-2-images/footer/logo-footer.svg";
+import LogoSVG from "/images/iteration-1-images/logo.svg";
+import LogoFooterSVG from "/images/iteration-2-images/footer/logo-footer.svg";
 import {
   Button,
   Card,

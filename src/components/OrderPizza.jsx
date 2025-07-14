@@ -10,10 +10,10 @@ import {
   FormText,
   FormFeedback,
 } from "reactstrap";
-import LogoSVG from "../../images/iteration-1-images/logo.svg";
+import LogoSVG from "/images/iteration-1-images/logo.svg";
 import Footer from "./Footer";
 
-// kullanicidan alinacak veriler 
+// kullanicidan alinacak veriler
 const initialData = {
   isimSoyisim: "",
   boyut: "",
@@ -33,10 +33,20 @@ const errorMessages = {
 
 // malzemeler ayarlandı
 const malzemeler = [
-  "Pepperoni", "Sosis", "Kanada Jambonu", "Tavuk Izgara", "Soğan",
-  "Ananas", "Domates", "Kabak", "Mısır", "Sucuk", "Jalepeno",
-  "Sarımsak", "Biber"
-].map(malzeme => ({ name: malzeme, label: malzeme }));
+  "Pepperoni",
+  "Sosis",
+  "Kanada Jambonu",
+  "Tavuk Izgara",
+  "Soğan",
+  "Ananas",
+  "Domates",
+  "Kabak",
+  "Mısır",
+  "Sucuk",
+  "Jalepeno",
+  "Sarımsak",
+  "Biber",
+].map((malzeme) => ({ name: malzeme, label: malzeme }));
 
 export default function OrderPizza({ onSubmit }) {
   const history = useHistory();
@@ -44,7 +54,7 @@ export default function OrderPizza({ onSubmit }) {
   const [errors, setErrors] = useState(initialData);
   const [isValid, setIsValid] = useState(false);
   const [count, setCount] = useState(1);
- 
+
   useEffect(() => {
     validateForm();
   }, [form]);
@@ -120,9 +130,9 @@ export default function OrderPizza({ onSubmit }) {
 
       <section className="bej-part">
         <div className="bej-part-icerik">
-          <img src="./images/iteration-2-images/pictures/form-banner.png"/>
+          <img src="./images/iteration-2-images/pictures/form-banner.png" />
           <nav className="nav-menu">
-            <a href="/">Anasayfa  </a>
+            <a href="/">Anasayfa </a>
             <p> - </p>
             <a href="/siparis-olustur"> Sipariş Oluştur</a>
           </nav>
@@ -249,7 +259,7 @@ export default function OrderPizza({ onSubmit }) {
 
         <section>
           <Button onClick={handleDecrement}>-</Button>
-          <span style={{textAlign:"center"}}>{count}</span>
+          <span style={{ textAlign: "center" }}>{count}</span>
           <Button onClick={handleIncrement}>+</Button>
         </section>
 
