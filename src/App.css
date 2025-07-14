@@ -150,7 +150,7 @@ button:hover {
   border: none;
   padding: 10px 20px;
   font-size: 14px;
-  width: 140px;
+  width: 100%;
   border-radius: 50px;
   cursor: pointer;
   font-weight: 600;
@@ -258,6 +258,13 @@ button:hover {
   justify-content: space-around;
   gap: 20px;
   flex-wrap: wrap;
+}
+.card-1 img,
+.card-2 img {
+  width: 100%;
+  height: auto;
+  border-radius: 30px;
+  object-fit: cover;
 }
 
 /* orderpizza */
@@ -636,28 +643,69 @@ footer ul li {
   transform: scale(1.05);
 }
 
+/* Responsive (Mobil uyumlu) */
 @media (max-width: 768px) {
   .firsat {
     display: none;
   }
 
   .main-title {
+    font-size: 36px;
     flex-wrap: wrap;
     line-height: 1.2em;
+    text-align: center;
   }
 
-  .main-nav li {
-    flex: 1 0 33%;
+  .secondary-title,
+  .firsat,
+  .success-title {
+    font-size: 24px;
+    text-align: center;
   }
 
+  .main-nav li,
   .secondary-nav li {
-    flex: 1 0 33%;
+    flex: 1 0 50%;
+  }
+
+  .main-nav a,
+  .secondary-nav a {
+    font-size: 14px;
+    padding: 8px 12px;
   }
 
   .cards {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 1fr; /* Tek sütun */
+    padding: 20px 15px;
+    width: 100%;
     max-width: 90%;
-    padding: 50px 20px;
+    margin: 0 auto;
+    gap: 0.5rem;
+  }
+
+  .card-1,
+  .card-2 {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .card-1 h1 {
+    font-size: 36px;
+  }
+
+  .overlay-content {
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 14px;
+  }
+
+  .card-title {
+    font-size: 24px;
+  }
+
+  .card-text {
+    font-size: 16px;
   }
 
   .vitrin {
@@ -671,20 +719,26 @@ footer ul li {
   }
 
   .vitrin-card-container {
-    width: 80%;
+    width: 90%;
+    margin: 20px 0;
+    padding: 15px;
     text-align: center;
   }
 
   .main-footer {
     display: flex;
     flex-direction: column;
-    align-items: left;
+    align-items: flex-start;
     padding-left: 30px;
   }
 
   .form-header {
+    height: auto;
+    padding: 20px;
+    font-size: 20px;
     justify-content: center;
     align-items: center;
+    text-align: center;
   }
 
   .order-pizza-form {
@@ -692,20 +746,113 @@ footer ul li {
     align-items: center;
   }
 
-  .bej-part {
+  .bej {
     padding: 0 20px;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
     text-align: center;
   }
 
   .order-pizza-form section {
-    padding: 0 20px;
+    padding: 0 10px;
+  }
+
+  .form-text-area {
+    width: 100%;
   }
 
   .pizza-info {
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .order-pizza-form .boyut {
+    flex-direction: column;
+  }
+
+  .order-pizza-form .boyut .form-group-row {
+    width: 100%;
+    margin: 0;
+  }
+
+  .ekMalzemeler .material-item {
+    flex-basis: 100%;
+  }
+
+  .payment-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .sayac-container {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .siparis-container {
+    width: 100%;
+    margin-left: 0;
+    padding: 0;
+  }
+
+  .siparis-container div {
+    padding: 0 20px;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .siparis-container h2 {
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  .success-page img {
+    width: 60%;
+    margin: 30px auto;
+  }
+
+  .siparis-alindi,
+  .siparis-alindi-info {
+    padding: 0 20px;
     align-items: center;
+    text-align: center;
+  }
+
+  .siparis-form-info div {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .siparis-form-info p:nth-child(odd),
+  .siparis-form-info p:nth-child(even) {
+    margin-left: 0;
+  }
+
+  .siparis-odeme-info {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .siparis-odeme-info div {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  footer div {
+    margin: 20px 0;
+  }
+
+  .insta-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .insta-gallery li {
+    width: 80px;
   }
 }
