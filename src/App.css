@@ -222,6 +222,11 @@ button:hover {
   background-color: #292929;
   color: white;
 }
+.bej-part-icerik img {
+  width: 100%;
+  height: 500px;
+  object-fit: contain;
+}
 
 .secondary-nav img {
   width: 40px;
@@ -302,22 +307,21 @@ button:hover {
   color: #ce2829;
 }
 
-.bej {
-  background-color: #faf7f2;
+.bej-part,
+.order-pizza-form,
+.siparis-container {
+  width: 100%;
+  max-width: 700px;
   display: flex;
   flex-direction: column;
-  padding: 0 400px;
-  padding-bottom: 50px;
-  gap: 20px;
-}
+  padding: 0 50px;
 
-.bej-icerik {
-  max-width: 700px;
-  margin: 0 auto;
+  align-items: flex-start;
 }
-
-.bej-part h2 {
-  font-weight: 600;
+.bej-part-icerik img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
 .order-pizza-form {
@@ -332,7 +336,7 @@ button:hover {
   max-width: 700px;
   display: flex;
   flex-direction: column;
-  padding: 0 50px;
+
   margin-bottom: 20px;
 }
 
@@ -772,11 +776,11 @@ footer ul li {
     width: 100%;
     margin: 0;
   }
-
-  .ekMalzemeler .material-item {
-    flex-basis: 100%;
+  .ekMalzemeler .material-item input[type="checkbox"] {
+    transform: scale(1.4);
+    border: none !important;
+    background-color: #faf7f2 !important;
   }
-
   .payment-container {
     flex-direction: column;
     padding: 20px;
@@ -854,5 +858,10 @@ footer ul li {
 
   .insta-gallery li {
     width: 80px;
+  }
+  .bej-part-icerik img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
   }
 }
