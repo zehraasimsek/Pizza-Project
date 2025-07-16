@@ -649,10 +649,6 @@ footer ul li {
 
 /* Responsive (Mobil uyumlu) */
 @media (max-width: 768px) {
-  .firsat {
-    display: none;
-  }
-
   .main-title {
     font-size: 36px;
     flex-wrap: wrap;
@@ -777,7 +773,7 @@ footer ul li {
     margin: 0;
   }
   .ekMalzemeler .material-item input[type="checkbox"] {
-    transform: scale(1.4);
+    transform: scale(1.2);
     border: none !important;
     background-color: #faf7f2 !important;
   }
@@ -863,5 +859,19 @@ footer ul li {
     width: 100%;
     height: auto;
     object-fit: cover;
+  }
+  .firsat {
+    display: block;
+  }
+  .card-button {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-40%) scale(0.6);
+    transform-origin: center center;
+    padding: 8px 16px;
+    font-size: 14px;
+    width: auto;
+    white-space: nowrap;
   }
 }
